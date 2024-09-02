@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useNavigate, Routes, Route } from "react-router-dom";
+import DefaultLayout from "./core/layout/pagesLayout/DefaultLayout";
+import HomePage from "./core/pages/home/HomePage";
+import UserPage from "./core/pages/user/UserPage";
+
+export const pagesName = {
+  HOME_PAGE: "/",
+  USER_PAGE: "/user",
+} as const;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path={pagesName.HOME_PAGE} element={<DefaultLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path={pagesName.USER_PAGE} element={<UserPage />} />
+      </Route>
+    </Routes>
   );
 }
 
